@@ -53,6 +53,7 @@ public class Proyecto1 {
         int ventasavena = 0;
         int masvendido = 0;
         double depositodisponible = 0;
+        int canproducto = 0;
 
 //CICLO BASE O PRINCIPAL DEL PROGRAMA
         while (opcion != 6) {
@@ -68,7 +69,6 @@ public class Proyecto1 {
             System.out.println("6.Salir del sistema");
             System.out.print("Seleccione una opcion: ");
 
-           
             // VALIDACION QUE LA OPCION SEA UN NUMERO 
             if (!lea.hasNextInt()) {
                 lea.next();
@@ -108,7 +108,7 @@ public class Proyecto1 {
                             continue;
                         }
                     }
-                    System.out.println("Caja actual: " + caja + " Lps.");
+                    System.out.println("Caja actual: " + caja + " Lps");
                     System.out.println();
                     ingefectivo = true;
                     break;
@@ -128,7 +128,6 @@ public class Proyecto1 {
                     System.out.print("Ingrese tipo de cliente: ");
                     tipocliente = lea.nextLine();
 
-                    
                     tipocliente = tipocliente.toUpperCase();
                     if (!tipocliente.equals("A") && !"B".equals(tipocliente) && !"C".equals(tipocliente)) {
                         System.out.println("Opcion no valida......Regresando al menu principal");
@@ -137,7 +136,7 @@ public class Proyecto1 {
                     }
                     System.out.println("");
                     while (true) {
-
+                        facturacion = true;
                         System.out.println("----------------------Tabla de Productos-------------------");
                         System.out.println("Codigo del producto         Descripcion             Precio");
                         System.out.println("        1                     Azucar                LPS.30");
@@ -189,12 +188,15 @@ public class Proyecto1 {
                                 if (codigoproducto == 1) {
                                     producto = "Azucar";
                                     precio = 30;
+                                    cantidad_producto = Azucar_cantidad;
                                 } else if (codigoproducto == 2) {
                                     producto = "Avena";
                                     precio = 25;
+                                    cantidad_producto = Avena_cantidad;
                                 } else if (codigoproducto == 3) {
                                     producto = "Trigo";
                                     precio = 32;
+                                    cantidad_producto = Trigo_cantidad;
                                 } else if (codigoproducto == 4) {
                                     venta = false;
                                 }
@@ -203,6 +205,7 @@ public class Proyecto1 {
                                 if (codigoproducto == 4) {
                                     producto = "Maiz";
                                     precio = 20;
+                                    cantidad_producto = Maiz_cantidad;
                                 } else {
                                     venta = false;
                                 }
@@ -213,6 +216,7 @@ public class Proyecto1 {
                         if (venta == false) {
                             System.out.println("NO PUEDE COMPRAR ESTE PRODUCTO");
                             facturacion = false;
+
                         } else {
                             while (true) {
                                 System.out.print("Ingrese la cantidad en kilogramos que vendera: ");
@@ -235,21 +239,38 @@ public class Proyecto1 {
                                 facturacion = false;
                             } else {
                                 // CONCATENACION/ADICION DE LA FACTURA MEDIANTE EL CICLO       
-                                detallesfactura += "\nNombre del producto: " + producto + "\n"
-                                        + "precio unitario: " + "Lps. " + precio + "\n"
-                                        + "Cantidad en Kg: " + cantidadkilogramo + "kg";
+                                canproducto++;
+                                detallesfactura += "\n"
+                                        + "Producto # " + canproducto + ":                " + producto + "\n"
+                                        + "Cantidad:                " + cantidadkilogramo + " Kg\n"
+                                        + "Precio Unitario:         " + precio + " LPS";
                                 double subtotal = precio * cantidadkilogramo;
                                 sumasubtotales += subtotal;
 
                                 System.out.println("El producto a sido vendido exitosamente");
                                 ventas++;
+
+                                //PERDIDA DE PRODUCTO SI SE VENDE          
+                                if (producto.equals("Azucar")) {
+                                    Azucar_cantidad -= cantidadkilogramo;
+                                    ventasazucar++;
+                                } else if (producto.equals("Avena")) {
+                                    Avena_cantidad -= cantidadkilogramo;
+                                    ventasavena++;
+                                } else if (producto.equals("Trigo")) {
+                                    Trigo_cantidad -= cantidadkilogramo;
+                                    ventastrigo++;
+                                } else if (producto.equals("Maiz")) {
+                                    Maiz_cantidad -= cantidadkilogramo;
+                                    ventasmaiz++;
+                                }
                             }
                         }
 
-                        // PREGUNTAR SI DESEA OTRO PRODUCTO  
+// PREGUNTAR SI DESEA OTRO PRODUCTO  
                         while (true) {
                             System.out.println("Desea comprar otro producto?");
-                            System.out.println("SI/NO: ");
+                            System.out.print("SI/NO: ");
                             decision = lea.nextLine();
                             decision = decision.toUpperCase();
                             if (!decision.equals("NO") && !decision.equals("SI")) {
@@ -281,32 +302,22 @@ public class Proyecto1 {
                     impuesto = sumasubtotales * 0.07;
                     total = (sumasubtotales + impuesto) - descuento;
                     if (facturacion == true) {
-                        System.out.println("-------Facturacion---------");
+                        System.out.println("");
+                        System.out.print("-----------------Facturacion------------");
                         System.out.println(detallesfactura);
-                        System.out.println("Subtotal: " + sumasubtotales);
-                        System.out.println("Descuento " + porcentaje + "%: " + String.format("%.2f",descuento));
-                        System.out.println("Impuesto 7%: " + String.format("%.2f",impuesto));
-                        System.out.println("Total a pagar: Lps.: " + String.format("%.2f", total));
+                        System.out.println("          RESUMEN DE PAGO       ");
+                        System.out.println("Subtotal:                " + sumasubtotales + " LPS");
+                        System.out.println("Descuento " + porcentaje + "%:            " + String.format("%.2f", descuento) + " LPS");
+                        System.out.println("Impuesto 7%:             " + String.format("%.2f", impuesto) + " LPS");
+                        System.out.println("Total a pagar:           " + String.format("%.2f", total) + " LPS");
                         System.out.println("");
                         caja += total;
                         volventas += total;
+                        canproducto = 0;
                         if (total > mayorventa) {
                             mayorventa = total;
                         }
-                        // PERDIDA DE PRODUCTO SI ES VENDIDO    
-                        if (producto.equals("Azucar")) {
-                            Azucar_cantidad -= cantidadkilogramo;
-                            ventasazucar++;
-                        } else if (producto.equals("Avena")) {
-                            Avena_cantidad -= cantidadkilogramo;
-                            ventasavena++;
-                        } else if (producto.equals("Trigo")) {
-                            Trigo_cantidad -= cantidadkilogramo;
-                            ventastrigo++;
-                        } else if (producto.equals("Maiz")) {
-                            Maiz_cantidad -= cantidadkilogramo;
-                            ventasmaiz++;
-                        }
+
                         detallesfactura = "";
                         sumasubtotales = 0;
 
@@ -315,6 +326,7 @@ public class Proyecto1 {
 
                 // COMPRAS
                 case 3:
+                    precioavena = 20;
                     if (comprasyventas == false) {
                         System.out.println("Debe ingresar a caja antes para poder comprar");
                         continue;
@@ -394,7 +406,7 @@ public class Proyecto1 {
                         case "C":
                             if (codigoproducto == 1) {
                                 producto = "Azucar";
-                                precio = 25;
+
                                 compra = false;
                             }
                             if (codigoproducto == 2) {
@@ -404,12 +416,12 @@ public class Proyecto1 {
                             }
                             if (codigoproducto == 3) {
                                 producto = "Trigo";
-                                precio = 30;
+
                                 compra = false;
                             }
                             if (codigoproducto == 4) {
                                 producto = "Maiz";
-                                precio = 18;
+
                                 compra = false;
                             }
                             break;
@@ -476,7 +488,7 @@ public class Proyecto1 {
 //CALCULOS DE REPORTES  
                     promediocompras = (compras > 0 ? volcompras / compras : 0);
                     promedioventas = (ventas > 0 ? volventas / ventas : 0);
-                    prodstar=(ventas <= 0 ? "NO SE PUEDE OBTENER ESTE RESULTADO ": "" );
+                    prodstar = (ventas <= 0 ? "NO SE PUEDE OBTENER ESTE RESULTADO " : "");
                     if (ventasazucar > masvendido) {
                         prodstar = "Azucar";
                         masvendido = ventasazucar;
@@ -494,7 +506,7 @@ public class Proyecto1 {
                         masvendido = ventasavena;
                     }
 
-                    System.out.println("----------------REPORTES---------------");
+                    System.out.println("\n----------------REPORTES---------------");
                     System.out.println("");
                     System.out.println("*****Caja*****");
                     System.out.println("Caja actualmente LPS: " + caja);
@@ -516,9 +528,10 @@ public class Proyecto1 {
                     System.out.println("****Highlights de Ventas y Gastos****");
                     System.out.println("Mayor venta: " + mayorventa);
                     System.out.println("Mayor compra: " + mayorcompra);
+                    System.out.println("");
                     System.out.println("*****Estelar***** ");
                     System.out.println("PRODUCTO ESTRELLA DEL DIA: " + prodstar);
-
+                    System.out.println("");
                     break;
                 // CIERRE DE CAJA
                 case 5:
@@ -526,12 +539,12 @@ public class Proyecto1 {
                     System.out.println("-----------CIERRE DE CAJA-----------");
                     System.out.println("");
                     System.out.println("*****GANANCIA***** ");
-                    System.out.println("Efectivo en caja actual: " + caja);
-                    System.out.println("Ganancia del dia: " + (volventas - volcompras));
-                    System.out.print("Cantidad disponible a depositar: " + depositodisponible);
+                    System.out.println("Efectivo en caja actual: " + caja + " LPS");
+                    System.out.println("Ganancia del dia: " + (volventas - volcompras) + " LPS");
+                    System.out.println("Cantidad disponible a depositar: " + depositodisponible + " LPS");
                     // VERIFICAR QUE SOLO SE PUEDA DEPOSITAR EL 60%  
                     while (true) {
-                        System.out.print("Cantidad disponible: " + depositodisponible + " - Ingrese monto a depositar: ");
+                        System.out.print("Ingrese monto a depositar: ");
                         linea = lea.nextLine();
                         Scanner valid2 = new Scanner(linea);
                         if (valid2.hasNextDouble()) {

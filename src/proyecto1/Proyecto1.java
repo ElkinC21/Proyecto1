@@ -235,7 +235,7 @@ public class Proyecto1 {
                                 facturacion = false;
                             } else {
                                 // CONCATENACION/ADICION DE LA FACTURA MEDIANTE EL CICLO       
-                                detallesfactura += "Nombre del producto: " + producto + "\n"
+                                detallesfactura += "\nNombre del producto: " + producto + "\n"
                                         + "precio unitario: " + "Lps. " + precio + "\n"
                                         + "Cantidad en Kg: " + cantidadkilogramo + "kg";
                                 double subtotal = precio * cantidadkilogramo;
@@ -284,8 +284,8 @@ public class Proyecto1 {
                         System.out.println("-------Facturacion---------");
                         System.out.println(detallesfactura);
                         System.out.println("Subtotal: " + sumasubtotales);
-                        System.out.println("Descuento " + porcentaje + "%: " + descuento);
-                        System.out.println("Impuesto 7%: " + impuesto);
+                        System.out.println("Descuento " + porcentaje + "%: " + String.format("%.2f",descuento));
+                        System.out.println("Impuesto 7%: " + String.format("%.2f",impuesto));
                         System.out.println("Total a pagar: Lps.: " + String.format("%.2f", total));
                         System.out.println("");
                         caja += total;

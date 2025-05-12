@@ -126,9 +126,9 @@ public class Proyecto1 {
                     System.out.print("Tipos de cliente ");
                     System.out.println("1. A       2. B      3. C ");
                     System.out.print("Ingrese tipo de cliente: ");
-                    lea.nextLine();
+                    tipocliente = lea.nextLine();
 
-                    tipocliente = lea.next();
+                    
                     tipocliente = tipocliente.toUpperCase();
                     if (!tipocliente.equals("A") && !"B".equals(tipocliente) && !"C".equals(tipocliente)) {
                         System.out.println("Opcion no valida......Regresando al menu principal");

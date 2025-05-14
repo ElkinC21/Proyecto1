@@ -20,7 +20,7 @@ public class Proyecto1 {
         Scanner lea = new Scanner(System.in);
 
         String decision = "", linea = "";
-        boolean comprasyventas = true, ingefectivo = true, facturacion = true;
+        boolean comprasyventas = false, ingefectivo = true, facturacion = true;
         boolean compra = true;
         double volventas = 0, volcompras = 0, caja = 0;
         int ventas = 0, compras = 0, precio = 0;
@@ -54,6 +54,7 @@ public class Proyecto1 {
         int masvendido = 0;
         double depositodisponible = 0;
         int canproducto = 0;
+        double totalinventario= Azucar_cantidad+Maiz_cantidad+Trigo_cantidad+Avena_cantidad;    
 
 //CICLO BASE O PRINCIPAL DEL PROGRAMA
         while (opcion != 6) {
@@ -78,8 +79,10 @@ public class Proyecto1 {
             }
             opcion = lea.nextInt();
             lea.nextLine();
+            
             switch (opcion) {
                 // SWITCH PARA LAS DISTINTAS OPCIONES DEL MENU
+                
                 case 1:
                     //CAJA
 
@@ -116,7 +119,15 @@ public class Proyecto1 {
                 case 2:
                     //OPCION VENTAS
                     if (comprasyventas == false) {
-                        System.out.println("Debe abrir caja antes de realizar una venta");
+                        System.out.println(""); 
+                        System.out.println("DEBE ABRIR CAJA ANTES DE REALIZAR COMPRAS");
+                        System.out.println("");
+                        continue;
+                    }
+                    if(totalinventario==0){
+                        System.out.println("");
+                        System.out.println("INVENTARIO VACIO.........SE RECOMIENDA COMPRAR MAS PRODUCTO");
+                        System.out.println("");
                         continue;
                     }
                     facturacion = true;
@@ -124,7 +135,7 @@ public class Proyecto1 {
                     System.out.println("----------------VENTAS---------------");
                     System.out.println("");
                     System.out.print("Tipos de cliente ");
-                    System.out.println("1. A       2. B      3. C ");
+                    System.out.println(" A        B       C ");
                     System.out.print("Ingrese tipo de cliente: ");
                     tipocliente = lea.nextLine();
 
@@ -240,11 +251,13 @@ public class Proyecto1 {
                             } else {
                                 // CONCATENACION/ADICION DE LA FACTURA MEDIANTE EL CICLO       
                                 canproducto++;
-                                detallesfactura += "\n"
-                                        + "Producto # " + canproducto + ":                " + producto + "\n"
-                                        + "Cantidad:                " + cantidadkilogramo + " Kg\n"
-                                        + "Precio Unitario:         " + precio + " LPS";
                                 double subtotal = precio * cantidadkilogramo;
+                                detallesfactura += "\n"
+                                        + "Producto # " + canproducto + ":             " + producto + "\n"
+                                        + "Cantidad:                " + cantidadkilogramo + " Kg\n"
+                                        + "Precio Unitario:         " + precio + " LPS\n"
+                                        + "Total Parcial:           " + subtotal+ "LPS\n"          ;
+                                
                                 sumasubtotales += subtotal;
 
                                 System.out.println("El producto a sido vendido exitosamente");
@@ -328,7 +341,9 @@ public class Proyecto1 {
                 case 3:
                     precioavena = 20;
                     if (comprasyventas == false) {
+                        System.out.println("");
                         System.out.println("Debe ingresar a caja antes para poder comprar");
+                        System.out.println("");
                         continue;
                     }
                     compra = true;
@@ -455,11 +470,11 @@ public class Proyecto1 {
 
                         gasto = precio * cantidadkilogramo;
                         if (gasto > caja) {
-                            System.out.println("No se puede pagar compra");
+                            System.out.println("NO SE HA REALIZADO LA COMPRA..... SALDO INSUFICIENTE");
                             break;
                         } else {
                             System.out.println("El producto a sido comprado exitosamente\n");
-
+                            System.out.println("Monto gastado: "+ String.format("%.2f",gasto));
                             compras++;
                             caja = caja - gasto;
                             volcompras += gasto;

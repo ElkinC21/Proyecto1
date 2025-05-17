@@ -23,7 +23,8 @@ public class Proyecto1 {
         boolean comprasyventas = false, ingefectivo = true, facturacion = true;
         boolean compra = true;
         double volventas = 0, volcompras = 0, caja = 0;
-        int ventas = 0, compras = 0, precio = 0;
+        int ventas = 0, compras = 0;
+        double precio=0;
         String detallesfactura = "", proveedor = " ", tipocliente = "";
         double aumentocaja = 0;
         String producto = "";
@@ -42,7 +43,7 @@ public class Proyecto1 {
         double impuesto = 0;
         double total = 0;
         int opcion = 0;
-        int precioavena = 20;
+        double precioavena = 20;
         double gasto = 0, promediocompras = 0, promedioventas = 0;
         String prodstar = "";
         double mayorventa = 0;
@@ -52,9 +53,10 @@ public class Proyecto1 {
         int ventasmaiz = 0;
         int ventasavena = 0;
         int masvendido = 0;
-        double depositodisponible = 0;
-        int canproducto = 0;
-        double totalinventario= Azucar_cantidad+Maiz_cantidad+Trigo_cantidad+Avena_cantidad;    
+        double depositodisponible=0;
+        int canproducto=0;
+        double totalinventario=0;
+        
 
 //CICLO BASE O PRINCIPAL DEL PROGRAMA
         while (opcion != 6) {
@@ -79,7 +81,7 @@ public class Proyecto1 {
             }
             opcion = lea.nextInt();
             lea.nextLine();
-            
+            totalinventario= Azucar_cantidad+Maiz_cantidad+Trigo_cantidad+Avena_cantidad;
             switch (opcion) {
                 // SWITCH PARA LAS DISTINTAS OPCIONES DEL MENU
                 
@@ -120,11 +122,11 @@ public class Proyecto1 {
                     //OPCION VENTAS
                     if (comprasyventas == false) {
                         System.out.println(""); 
-                        System.out.println("DEBE ABRIR CAJA ANTES DE REALIZAR COMPRAS");
+                        System.out.println("DEBE ABRIR CAJA ANTES DE REALIZAR VENTAS");
                         System.out.println("");
                         continue;
                     }
-                    if(totalinventario==0){
+                    if(totalinventario<=0){
                         System.out.println("");
                         System.out.println("INVENTARIO VACIO.........SE RECOMIENDA COMPRAR MAS PRODUCTO");
                         System.out.println("");
@@ -150,10 +152,10 @@ public class Proyecto1 {
                         facturacion = true;
                         System.out.println("----------------------Tabla de Productos-------------------");
                         System.out.println("Codigo del producto         Descripcion             Precio");
-                        System.out.println("        1                     Azucar                LPS.30");
-                        System.out.println("        2                     Avena                 LPS.25");
-                        System.out.println("        3                     Trigo                 LPS.32");
-                        System.out.println("        4                     Maiz                  LPS.20");
+                        System.out.println("        1                     Azucar                LPS 30.0");
+                        System.out.println("        2                     Avena                 LPS 25.0");
+                        System.out.println("        3                     Trigo                 LPS 32.0");
+                        System.out.println("        4                     Maiz                  LPS 20.0");
                         System.out.print("Ingrese codigo del producto: ");
 
                         if (!lea.hasNextInt()) {
@@ -277,6 +279,7 @@ public class Proyecto1 {
                                     Maiz_cantidad -= cantidadkilogramo;
                                     ventasmaiz++;
                                 }
+                           
                             }
                         }
 
@@ -342,7 +345,7 @@ public class Proyecto1 {
                     precioavena = 20;
                     if (comprasyventas == false) {
                         System.out.println("");
-                        System.out.println("Debe ingresar a caja antes para poder comprar");
+                        System.out.println("DEBE ABRIR CAJA ANTES DE REALIZAR COMPRAS");
                         System.out.println("");
                         continue;
                     }
@@ -367,10 +370,10 @@ public class Proyecto1 {
                     // SELECCION DE PRODUCTO        
                     System.out.println("----------------------Tabla de Productos-------------------");
                     System.out.println("Codigo del producto         Descripcion             Precio");
-                    System.out.println("        1                     Azucar                LPS.25");
-                    System.out.println("        2                     Avena                 LPS." + precioavena);
-                    System.out.println("        3                     Trigo                 LPS.30");
-                    System.out.println("        4                     Maiz                  LPS.18");
+                    System.out.println("        1                     Azucar                LPS 25");
+                    System.out.println("        2                     Avena                 LPS " + precioavena);
+                    System.out.println("        3                     Trigo                 LPS 30.0");
+                    System.out.println("        4                     Maiz                  LPS 18.0");
                     System.out.print("Ingrese codigo del producto: ");
                     if (!lea.hasNextInt()) {
                         lea.next();
@@ -382,6 +385,10 @@ public class Proyecto1 {
 
                     codigoproducto = lea.nextInt();
                     lea.nextLine();
+                    if(codigoproducto!=1&&codigoproducto!=2&&codigoproducto!=3&&codigoproducto!=4){
+                        System.out.println("ERROR.....OPCION NO VALIDA");
+                        break;
+                    }
                     switch (proveedor) {
 
                         // CONDICIONAL. TIPO PROVEEDOR CON CODIGO DE PRODUCTO    
@@ -400,6 +407,7 @@ public class Proyecto1 {
                                 precio = 18;
 
                             }
+                            
                             break;
                         case "B":
 
@@ -448,7 +456,7 @@ public class Proyecto1 {
                     } else {
                         while (true) {
                             // NO INGRESAR ALGO ! A NUMERO POSITIVOS Y MAYOR QUE CERO   
-                            System.out.println("Ingrese la cantidad en kilogramos que desea comprar: ");
+                            System.out.print("Ingrese la cantidad en kilogramos que desea comprar: ");
                             linea = lea.nextLine();
 
                             Scanner num = new Scanner(linea);
@@ -460,6 +468,7 @@ public class Proyecto1 {
                                     break;
                                 } else {
                                     System.out.println("ERROR......porfavor ingrese un valor valido");
+                                
                                 }
                             } else {
 
@@ -491,9 +500,9 @@ public class Proyecto1 {
                             } else if (producto.equals("Maiz")) {
                                 Maiz_cantidad += cantidadkilogramo;
                             }
-
+                                
                         }
-
+                             
                     }
                     break;
 
@@ -503,7 +512,7 @@ public class Proyecto1 {
 //CALCULOS DE REPORTES  
                     promediocompras = (compras > 0 ? volcompras / compras : 0);
                     promedioventas = (ventas > 0 ? volventas / ventas : 0);
-                    prodstar = (ventas <= 0 ? "NO SE PUEDE OBTENER ESTE RESULTADO " : "");
+                    prodstar = (ventas <= 0 ? "SIN RESULTADOS POR AHORA" : "");
                     if (ventasazucar > masvendido) {
                         prodstar = "Azucar";
                         masvendido = ventasazucar;
@@ -523,28 +532,28 @@ public class Proyecto1 {
 
                     System.out.println("\n----------------REPORTES---------------");
                     System.out.println("");
-                    System.out.println("*****Caja*****");
+                    System.out.println("| ESTADO DE CAJA |       ");
                     System.out.println("Caja actualmente LPS: " + caja);
                     System.out.println("");
-                    System.out.println("****Ganancias****");
+                    System.out.println("| RESUMEN DE MOVIMIENTOS |    ");
                     System.out.println("Numero de compras: " + compras);
                     System.out.println("Numero de ventas: " + ventas);
 
                     System.out.println("");
-                    System.out.println("****Volumen****");
+                    System.out.println("| VOLUMEN DE TRANSACCIONES |      ");
                     System.out.println("Volumen total de compras: " + volcompras);
                     System.out.println("Volumen total de ventas: " + volventas);
                     System.out.println("Ganancias: " + (volventas - volcompras));
                     System.out.println("");
-                    System.out.println("****Promedio****");
+                    System.out.println("| VALORES MEDIOS |            ");
                     System.out.println("Promedio de compras: " + promediocompras);
                     System.out.println("Promedio de ventas: " + promedioventas);
                     System.out.println("");
-                    System.out.println("****Highlights de Ventas y Gastos****");
+                    System.out.println("| TOP VENTAS Y COMPRAS |      ");
                     System.out.println("Mayor venta: " + mayorventa);
                     System.out.println("Mayor compra: " + mayorcompra);
                     System.out.println("");
-                    System.out.println("*****Estelar***** ");
+                    System.out.println("| PRODUCTO DESTACADO |    ");
                     System.out.println("PRODUCTO ESTRELLA DEL DIA: " + prodstar);
                     System.out.println("");
                     break;
@@ -553,7 +562,8 @@ public class Proyecto1 {
                     depositodisponible = caja * 0.6;
                     System.out.println("-----------CIERRE DE CAJA-----------");
                     System.out.println("");
-                    System.out.println("*****GANANCIA***** ");
+                    System.out.println("   | GANANCIA | ");
+                    System.out.println("");
                     System.out.println("Efectivo en caja actual: " + caja + " LPS");
                     System.out.println("Ganancia del dia: " + (volventas - volcompras) + " LPS");
                     System.out.println("Cantidad disponible a depositar: " + depositodisponible + " LPS");

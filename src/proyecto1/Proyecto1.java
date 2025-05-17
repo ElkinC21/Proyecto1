@@ -20,7 +20,7 @@ public class Proyecto1 {
         Scanner lea = new Scanner(System.in);
 
         String decision = "", linea = "";
-        boolean comprasyventas = false, ingefectivo = true, facturacion = true;
+        boolean opciones = false, ingefectivo = true, facturacion = true;
         boolean compra = true;
         double volventas = 0, volcompras = 0, caja = 0;
         int ventas = 0, compras = 0;
@@ -88,7 +88,7 @@ public class Proyecto1 {
                 case 1:
                     //CAJA
 
-                    comprasyventas = true;
+                    opciones = true;
                     System.out.println("");
                     System.out.println("----------------CAJA---------------");
                     System.out.println("");
@@ -120,7 +120,7 @@ public class Proyecto1 {
 
                 case 2:
                     //OPCION VENTAS
-                    if (comprasyventas == false) {
+                    if (opciones == false) {
                         System.out.println(""); 
                         System.out.println("DEBE ABRIR CAJA ANTES DE REALIZAR VENTAS");
                         System.out.println("");
@@ -343,7 +343,7 @@ public class Proyecto1 {
                 // COMPRAS
                 case 3:
                     precioavena = 20;
-                    if (comprasyventas == false) {
+                    if (opciones == false) {
                         System.out.println("");
                         System.out.println("DEBE ABRIR CAJA ANTES DE REALIZAR COMPRAS");
                         System.out.println("");
@@ -508,6 +508,12 @@ public class Proyecto1 {
 
 //REPORTES
                 case 4:
+                if (opciones == false) {
+                        System.out.println("");
+                        System.out.println("DEBE ABRIR CAJA ANTES DE SOLICITAR UN REPORTE");
+                        System.out.println("");
+                        continue;
+                    }
 
 //CALCULOS DE REPORTES  
                     promediocompras = (compras > 0 ? volcompras / compras : 0);
@@ -559,6 +565,12 @@ public class Proyecto1 {
                     break;
                 // CIERRE DE CAJA
                 case 5:
+                    if (opciones == false) {
+                        System.out.println("");
+                        System.out.println("DEBE ABRIR CAJA ANTES DE CERRAR CAJA");
+                        System.out.println("");
+                        continue;
+                    }
                     depositodisponible = caja * 0.6;
                     System.out.println("-----------CIERRE DE CAJA-----------");
                     System.out.println("");
@@ -585,7 +597,7 @@ public class Proyecto1 {
                             System.out.println("ERROR... ingrese un número válido");
                         }
                     }
-                    comprasyventas = false;
+                    opciones = false;
                     ingefectivo = false;
                     volcompras = 0;
                     volventas = 0;

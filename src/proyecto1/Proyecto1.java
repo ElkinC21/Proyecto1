@@ -312,6 +312,7 @@ public class Proyecto1 {
                         descuento = sumasubtotales * 0.05;
 
                     } else {
+                        porcentaje=0;
                         descuento = 0;
 
                     }
@@ -373,7 +374,7 @@ public class Proyecto1 {
                    while(true) {
                     System.out.println("----------------------Tabla de Productos-------------------");
                     System.out.println("Codigo del producto         Descripcion             Precio");
-                    System.out.println("        1                     Azucar                LPS 25");
+                    System.out.println("        1                     Azucar                LPS 25.0");
                     System.out.println("        2                     Avena                 LPS " + precioavena);
                     System.out.println("        3                     Trigo                 LPS 30.0");
                     System.out.println("        4                     Maiz                  LPS 18.0");

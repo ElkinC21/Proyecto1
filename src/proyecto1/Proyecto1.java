@@ -19,14 +19,14 @@ public class Proyecto1 {
 
         Scanner lea = new Scanner(System.in);
 
-        String decision = "", linea = "";
-        boolean opciones = false, ingefectivo = true, facturacion = true;
-        boolean compra = true;
-        double volventas = 0, volcompras = 0, caja = 0;
+        String decision, linea;
+        boolean opciones = false, ingefectivo = true, facturacion;
+        boolean compra;
+        double volventas=0, volcompras=0, caja=0;
         int ventas = 0, compras = 0;
         double precio=0;
-        String detallesfactura = "", proveedor = " ", tipocliente = "";
-        double aumentocaja = 0;
+        String detallesfactura = "", proveedor, tipocliente;
+        double aumentocaja;
         String producto = "";
         double cantidad_producto = 0;
         double Azucar_cantidad = 0;
@@ -37,25 +37,25 @@ public class Proyecto1 {
         int codigoproducto = 0;
         double cantidadkilogramo = 0;
         double sumasubtotales = 0;
-        double descuento = 0;
+        double descuento;
         double descuentoaplicado = 0;
         int porcentaje = 0;
-        double impuesto = 0;
-        double total = 0;
+        double impuesto;
+        double total;
         int opcion = 0;
-        double precioavena = 20;
-        double gasto = 0, promediocompras = 0, promedioventas = 0;
-        String prodstar = "";
-        double mayorventa = 0;
-        double mayorcompra = 0, depositar = 0;
+        double precioavena;
+        double gasto, promediocompras, promedioventas;
+        String prodstar;
+        double mayorventa=0;
+        double mayorcompra=0, depositar;
         int ventasazucar = 0;
         int ventastrigo = 0;
         int ventasmaiz = 0;
         int ventasavena = 0;
         int masvendido = 0;
-        double depositodisponible=0;
+        double depositodisponible;
         int canproducto=0;
-        double totalinventario=0;
+        double totalinventario;
         
 
 //CICLO BASE O PRINCIPAL DEL PROGRAMA
@@ -587,7 +587,8 @@ public class Proyecto1 {
                     System.out.println("Efectivo en caja actual: " + caja + " LPS");
                     System.out.println("Ganancia del dia: " + (volventas - volcompras) + " LPS");
                     System.out.println("Cantidad disponible a depositar: " + depositodisponible + " LPS");
-                    // VERIFICAR QUE SOLO SE PUEDA DEPOSITAR EL 60%  
+                    
+// VERIFICAR QUE SOLO SE PUEDA DEPOSITAR EL 60%  
                     while (true) {
                         System.out.print("Ingrese monto a depositar: ");
                         linea = lea.nextLine();

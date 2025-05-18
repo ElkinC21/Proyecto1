@@ -169,10 +169,12 @@ public class Proyecto1 {
                         codigoproducto = lea.nextInt();
                         // VALIDACION PRODUCTO
                         if (codigoproducto != 1 && codigoproducto != 2 && codigoproducto != 3 && codigoproducto != 4) {
-                            System.out.println("Opcion no valida.....Regresando al menu");
+                            System.out.println("Opcion no valida.....PORFAVOR INGRESE UNA OPCION VALIDA");
                             System.out.println("");
-                            break;
+                            facturacion=false;
+                            continue;
                         } else {
+                        
                         }
                         boolean venta = true;
                         switch (tipocliente) {
@@ -368,6 +370,7 @@ public class Proyecto1 {
 
                     }
                     // SELECCION DE PRODUCTO        
+                   while(true) {
                     System.out.println("----------------------Tabla de Productos-------------------");
                     System.out.println("Codigo del producto         Descripcion             Precio");
                     System.out.println("        1                     Azucar                LPS 25");
@@ -377,7 +380,8 @@ public class Proyecto1 {
                     System.out.print("Ingrese codigo del producto: ");
                     if (!lea.hasNextInt()) {
                         lea.next();
-                        System.out.println("Error...........Porfavor ingrese una opcion valida\n");
+                        System.out.println("");
+                        System.out.println("Error...........PORFAVOR INGRESE UNA OPCION VALIDA\n");
                         System.out.println("");
                         System.out.println("");
                         continue;
@@ -386,9 +390,13 @@ public class Proyecto1 {
                     codigoproducto = lea.nextInt();
                     lea.nextLine();
                     if(codigoproducto!=1&&codigoproducto!=2&&codigoproducto!=3&&codigoproducto!=4){
-                        System.out.println("ERROR.....OPCION NO VALIDA");
-                        break;
+                        System.out.println("");
+                        System.out.println("ERROR.....PORFAVOR INGRESE UNA OPCION VALIDA\n");
+                        System.out.println("");
+                    }else{
+                    break;
                     }
+                   }
                     switch (proveedor) {
 
                         // CONDICIONAL. TIPO PROVEEDOR CON CODIGO DE PRODUCTO    

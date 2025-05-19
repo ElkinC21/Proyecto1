@@ -105,15 +105,15 @@ public class Proyecto1 {
                                 System.out.println();
                                 caja += aumentocaja;
                             } else {
-                                System.out.println("ERROR......Ingrese un valor valido");
+                                System.out.println("ERROR......VALOR INVALIDO");
                                 continue;
                             }
                         } else {
-                            System.out.println("ERROR......Ingrese un valor valido");
+                            System.out.println("ERROR......VALOR INVALIDO");
                             continue;
                         }
                     }
-                    System.out.println("Caja actual: " + caja + " Lps");
+                    System.out.println("Caja actual: " + String.format("%.2f",caja) + " Lps");
                     System.out.println();
                     ingefectivo = true;
                     break;
@@ -136,7 +136,7 @@ public class Proyecto1 {
                     System.out.println("");
                     System.out.println("----------------VENTAS---------------");
                     System.out.println("");
-                    System.out.print("Tipos de cliente ");
+                    System.out.println("Tipos de cliente ");
                     System.out.println(" A        B       C ");
                     System.out.print("Ingrese tipo de cliente: ");
                     tipocliente = lea.nextLine();
@@ -257,10 +257,10 @@ public class Proyecto1 {
                                 canproducto++;
                                 double subtotal = precio * cantidadkilogramo;
                                 detallesfactura += "\n"
-                                        + "Producto # " + canproducto + ":             " + producto + "\n"
+                                        + "Producto # " + canproducto + ":            " + producto + "\n"
                                         + "Cantidad:                " + cantidadkilogramo + " Kg\n"
-                                        + "Precio Unitario:         " + precio + " LPS\n"
-                                        + "Total Parcial:           " + subtotal+ "LPS\n"          ;
+                                        + "Precio Unitario:         " + String.format("%.2f",precio) + " LPS\n"
+                                        + "Total Parcial:           " + String.format("%.2f",subtotal)+ " LPS\n"          ;
                                 
                                 sumasubtotales += subtotal;
 
@@ -325,7 +325,7 @@ public class Proyecto1 {
                         System.out.print("-----------------Facturacion------------");
                         System.out.println(detallesfactura);
                         System.out.println("          RESUMEN DE PAGO       ");
-                        System.out.println("Subtotal:                " + sumasubtotales + " LPS");
+                        System.out.println("Subtotal:                " + String.format("%.2f",sumasubtotales) + " LPS");
                         System.out.println("Descuento " + porcentaje + "%:            " + String.format("%.2f", descuento) + " LPS");
                         System.out.println("Impuesto 7%:             " + String.format("%.2f", impuesto) + " LPS");
                         System.out.println("Total a pagar:           " + String.format("%.2f", total) + " LPS");
@@ -357,11 +357,11 @@ public class Proyecto1 {
                     System.out.println("----------------COMPRAS---------------");
                     System.out.println("");
                     System.out.println("Tipos de proveedor");
-                    System.out.println("1. A       2. B      3. C ");
+                    System.out.println(" A        B       C ");
                     System.out.print("Ingrese tipo de proveedor: ");
                     proveedor = lea.next();
                     proveedor = proveedor.toUpperCase();
-
+                    System.out.println("");
                     if (!proveedor.equals("A") && !proveedor.equals("B") && !proveedor.equals("C")) {
                         System.out.println("Opcion no valida........Regresando al menu principal");
                         break;
@@ -548,7 +548,7 @@ public class Proyecto1 {
                     System.out.println("\n----------------REPORTES---------------");
                     System.out.println("");
                     System.out.println("| ESTADO DE CAJA |       ");
-                    System.out.println("Caja actualmente LPS: " + caja);
+                    System.out.println("Caja actualmente LPS: " + String.format("%.2f",caja));
                     System.out.println("");
                     System.out.println("| RESUMEN DE MOVIMIENTOS |    ");
                     System.out.println("Numero de compras: " + compras);
@@ -556,17 +556,17 @@ public class Proyecto1 {
 
                     System.out.println("");
                     System.out.println("| VOLUMEN DE TRANSACCIONES |      ");
-                    System.out.println("Volumen total de compras: " + volcompras);
-                    System.out.println("Volumen total de ventas: " + volventas);
-                    System.out.println("Ganancias: " + (volventas - volcompras));
+                    System.out.println("Volumen total de compras: " + String.format("%.2f",volcompras));
+                    System.out.println("Volumen total de ventas: " + String.format("%.2f",volventas));
+                    System.out.println("Ganancias: " + String.format("%.2f",(volventas - volcompras)));
                     System.out.println("");
                     System.out.println("| VALORES MEDIOS |            ");
-                    System.out.println("Promedio de compras: " + promediocompras);
-                    System.out.println("Promedio de ventas: " + promedioventas);
+                    System.out.println("Promedio de compras: " + String.format("%.2f",promediocompras));
+                    System.out.println("Promedio de ventas: " + String.format("%.2f",promedioventas));
                     System.out.println("");
                     System.out.println("| TOP VENTAS Y COMPRAS |      ");
-                    System.out.println("Mayor venta: " + mayorventa);
-                    System.out.println("Mayor compra: " + mayorcompra);
+                    System.out.println("Mayor venta: " + String.format("%.2f",mayorventa));
+                    System.out.println("Mayor compra: " + String.format("%.2f",mayorcompra));
                     System.out.println("");
                     System.out.println("| PRODUCTO DESTACADO |    ");
                     System.out.println("PRODUCTO ESTRELLA DEL DIA: " + prodstar);
@@ -585,9 +585,9 @@ public class Proyecto1 {
                     System.out.println("");
                     System.out.println("   | GANANCIA | ");
                     System.out.println("");
-                    System.out.println("Efectivo en caja actual: " + caja + " LPS");
-                    System.out.println("Ganancia del dia: " + (volventas - volcompras) + " LPS");
-                    System.out.println("Cantidad disponible a depositar: " + depositodisponible + " LPS");
+                    System.out.println("Efectivo en caja actual: " + String.format("%.2f",caja) + " LPS");
+                    System.out.println("Ganancia del dia: " + String.format("%.2f",(volventas - volcompras)) + " LPS");
+                    System.out.println("Cantidad disponible a depositar: " + String.format("%.2f",depositodisponible) + " LPS");
                     
 // VERIFICAR QUE SOLO SE PUEDA DEPOSITAR EL 60%  
                     while (true) {
@@ -601,7 +601,7 @@ public class Proyecto1 {
                                 caja -= depositar;
                                 break;
                             } else {
-                                System.out.println("ERROR... monto mayor al permitido");
+                                System.out.println("ERROR... monto ingresado es mayor al permitido");
                             }
                         } else {
                             System.out.println("ERROR... ingrese un número válido");
